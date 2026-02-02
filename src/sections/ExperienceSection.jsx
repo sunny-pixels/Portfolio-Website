@@ -5,55 +5,53 @@ import GlowCard from "../components/GlowCard.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
- 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ExperienceSection = () => {
+  useGSAP(() => {
+    gsap.utils.toArray(".timeline-card").forEach((card) => {
+      gsap.from(card, {
+        xPercent: -100,
+        opacity: 0,
+        transformOrigin: "left left",
+        duration: 1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+        },
+      });
+    });
 
-    useGSAP(() => {
-        gsap.utils.toArray('.timeline-card').forEach((card) => {
-            gsap.from(card, {
-                xPercent: -100,
-                opacity: 0,
-                transformOrigin: 'left left',
-                duration: 1,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%'
-                }
-            })
-        })
+    gsap.to(".timeline", {
+      transformOrigin: "bottom bottom",
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: ".timeline",
+        start: "top center",
+        end: "70% center",
+        onUpdate: (self) => {
+          gsap.to(".timeline", {
+            scaleY: 1 - self.progress,
+          });
+        },
+      },
+    });
 
-        gsap.to('.timeline', {
-            transformOrigin: 'bottom bottom',
-            ease: 'power1.inOut',
-            scrollTrigger: {
-                trigger: '.timeline',
-                start: 'top center',
-                end: '70% center',
-                onUpdate: (self) => {
-                    gsap.to('.timeline', {
-                        scaleY: 1 - self.progress
-                    })
-                }
-            }
-        })
-
-        gsap.utils.toArray('.expText').forEach((text) => {
-            gsap.from(text, {
-                xPercent: 0,
-                opacity: 0,
-                duration: 1,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: text,
-                    start: 'top 60%'
-                }
-            })
-        })
-
-    }, [])
+    gsap.utils.toArray(".expText").forEach((text) => {
+      gsap.from(text, {
+        xPercent: 0,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: text,
+          start: "top 60%",
+        },
+      });
+    });
+  }, []);
 
   return (
     <section

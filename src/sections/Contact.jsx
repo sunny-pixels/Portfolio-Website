@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/ContactModels/ContactExperience";
-import emailjs from '@emailjs/browser'
+import LazyCanvas from "../components/LazyCanvas";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -24,19 +25,18 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
-    setLoading(true)
-
+    setLoading(true);
 
     try {
       await emailjs.sendForm(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-      )
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      );
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.log('Emailjs error', error)
+      console.log("Emailjs error", error);
     } finally {
       setLoading(false);
     }
@@ -96,14 +96,15 @@ const Contact = () => {
                 </div>
 
                 <button type="submit" disabled={loading}>
-                    <div className="cta-button group">
-                        <div className="bg-circle" />
-                        <p className="text">{loading ? 'Sending...' : 'Send Message'}</p>
-                        <div className="arrow-wrapper"
-                        >
-                            <img src="/images/arrow-down.svg" alt="arrow" />
-                        </div>
+                  <div className="cta-button group">
+                    <div className="bg-circle" />
+                    <p className="text">
+                      {loading ? "Sending..." : "Send Message"}
+                    </p>
+                    <div className="arrow-wrapper">
+                      <img src="/images/arrow-down.svg" alt="arrow" />
                     </div>
+                  </div>
                 </button>
               </form>
             </div>
@@ -112,7 +113,9 @@ const Contact = () => {
           {/* Right Side - 3D Experience */}
           <div className="xl:col-span-7 min-h-96">
             <div className="w-full h-full bg-[#cd7c2e] hover:cursor-grab rounded-3xl overflow-hidder">
+              <LazyCanvas threshold={0.1}>
                 <ContactExperience />
+              </LazyCanvas>
             </div>
           </div>
         </div>
