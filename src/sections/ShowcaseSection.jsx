@@ -52,7 +52,7 @@ const ShowcaseSection = () => {
           {/* LEFT */}
           <div className="first-project-wrapper" ref={project1Ref}>
             <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde" />
+              <img src="/images/project-1.png" alt="Ryde" />
             </div>
             <div className="text-content">
               <h2>BillSwift – Smart & Simple Billing Management System</h2>
@@ -67,9 +67,9 @@ const ShowcaseSection = () => {
           {/* RIGHT */}
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={project2Ref}>
-              <div className="image-wrapper bg-[#ffefdb]">
+              <div className="image-wrapper bg-white">
                 <img
-                  src="/images/project2.png"
+                  src="/images/project-2.png"
                   alt="Library Management Platform"
                 />
               </div>
@@ -78,7 +78,7 @@ const ShowcaseSection = () => {
 
             <div className="project" ref={project3Ref}>
               <div className="image-wrapper bg-[#ffe7eb]">
-                <img src="/images/project3.png" alt="YC Directory" />
+                <img src="/images/project-3.png" alt="YC Directory" />
               </div>
               <h2>Contact Manager</h2>
             </div>
